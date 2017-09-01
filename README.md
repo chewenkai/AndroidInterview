@@ -28,7 +28,7 @@
 
 * [ContentProvider实例详解](https://github.com/fanrunqi/ForAndroidInterview/blob/master/android/ContentProvider%E5%AE%9E%E4%BE%8B%E8%AF%A6%E8%A7%A3.md)
 
-* [BroadcastReceiver使用总结](https://github.com/fanrunqi/ForAndroidInterview/blob/master/android/BroadcastReceiver%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93.md)
+* [BroadcastReceiver使用总结](https://github.com/fanrunqi/AndroidInterview/blob/master/android/BroadcastReceiver%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93.md)
 
 * [Android异步任务机制之AsycTask](https://github.com/fanrunqi/ForAndroidInterview/blob/master/android/Android%E5%BC%82%E6%AD%A5%E4%BB%BB%E5%8A%A1%E6%9C%BA%E5%88%B6%E4%B9%8BAsycTask.md)
 
