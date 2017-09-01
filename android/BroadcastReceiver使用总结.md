@@ -6,11 +6,11 @@
 
 　　BroadcastReceiver 自身并不实现图形用户界面，但是当它收到某个通知后， BroadcastReceiver 可以通过启动 Service 、启动 Activity 或是 NotificationMananger 提醒用户。
 
-#BroadcastReceiver使用注意
+# BroadcastReceiver使用注意
 
 　　当系统或应用发出广播时，将会扫描系统中的所有广播接收者，通过action匹配将广播发送给相应的接收者，接收者收到广播后将会产生一个广播接收者的实例，执行其中的onReceiver()这个方法；特别需要注意的是这个实例的生命周期只有10秒，如果10秒内没执行结束onReceiver()，系统将会报错。　
 　　
-　　在onReceiver()执行完毕之后，该实例将会被销毁，所以不要在onReceiver()中执行耗时操作，也不要在里面创建子线程处理业务（因为可能子线程没处理完，接收者就被回收了，那么子线程也会跟着被回收掉）；正确的处理方法就是通过in调用activity或者service处理业务。
+　　在onReceiver()执行完毕之后，该实例将会被销毁，所以不要在onReceiver()中执行耗时操作，也不要在里面创建子线程处理业务（因为可能子线程没处理完，接收者就被回收了，那么子线程也会跟着被回收掉）；正确的处理方法就是通过intent调用activity或者service处理业务。
 
 #BroadcastReceiver的注册
 
@@ -35,7 +35,7 @@ String SMS_RECEIVED = "android.provider.Telephony.SMS_RECEIVED" ;
 }
 ```
 
-##静态方式
+## 静态方式
 
 　　在AndroidManifest.xml的application里面定义receiver并设置要接收的action。
 
@@ -49,7 +49,7 @@ String SMS_RECEIVED = "android.provider.Telephony.SMS_RECEIVED" ;
 </ receiver >
 ```
 
-　　这里的priority取值是　-1000到1000，值越大优先级越高，同时注意加上系统接收短信的限权。
+　　这里的priority取值是-1000到1000，值越大优先级越高，同时注意加上系统接收短信的限权。
 
 ``` 
 < uses-permission android:name ="android.permission.RECEIVE_SMS" />
@@ -72,7 +72,7 @@ public class MainActivity extends Activity {
 		receiver = new MyBroadcastReceiver();
 		IntentFilter intentFilter = new IntentFilter( "android.provider.Telephony.SMS_RECEIVED" );
 		registerReceiver( receiver , intentFilter);
-		
+
 		super.onResume();
 	}
 	@Override
@@ -84,7 +84,7 @@ public class MainActivity extends Activity {
 }
 ```
 
-##静态注册和动态注册的区别
+## 静态注册和动态注册的区别
 
 　　1、静态注册的广播接收者一经安装就常驻在系统之中，不需要重新启动唤醒接收者；
 　　动态注册的广播接收者随着应用的生命周期，由registerReceiver开始监听，由unregisterReceiver撤销监听，如果应用退出后，没有撤销已经注册的接收者应用应用将会报错。
@@ -93,11 +93,11 @@ public class MainActivity extends Activity {
 　　动态注册的广播接收者将会导致应用报错
 　　而静态注册的广播接收者将不会有任何报错，因为自从应用安装完成后，广播接收者跟应用已经脱离了关系。　
 
-#发送BroadcastReceiver
+# 发送BroadcastReceiver
 
 发送广播主要有两种类型：
 
-##普通广播
+## 普通广播
  
  应用在需要通知各个广播接收者的情况下使用，如 开机启动
 
@@ -117,7 +117,7 @@ sendBroadcast(Intent);
 
 　　
 　　
-##有序广播
+## 有序广播
 
 应用在需要有特定拦截的场景下使用，如黑名单短信、电话拦截。　
 
@@ -168,7 +168,7 @@ removeStickyBroadcast(intent);
 ```
 　　在卸载之前该intent会保留，接收者在可接收状态都能获得。
 
-##异步有序广播
+## 异步有序广播
 
 　　使用方法：sendStickyOrderedBroadcast(intent, resultReceiver, scheduler,
        initialCode, initialData, initialExtras)：
@@ -180,7 +180,7 @@ removeStickyBroadcast(intent);
  <uses-permission android:name="android.permission.BROADCAST_STICKY" /> 
 ```
 
-#总结
+# 总结
 
 　　
 
@@ -209,7 +209,7 @@ removeStickyBroadcast(intent);
 　　同优先级的静态广播接收器，**先扫描的大于后扫描的**　
 
 
-#一些常用的系统广播的action 和permission 
+# 一些常用的系统广播的action 和permission 
 
  - 开机启动
 
